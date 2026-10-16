@@ -162,82 +162,74 @@ def calculator():
             return 2 * (l + w)
         def trapezoid_area(a, b, h):
             return 0.5 * (a+b) * h
-        
-
-        geometry_area = {
-            "circle": circle_area,
-            "square": square_area,
-            "triangle": triangle_area,
-        }
-
-        trigonometry_functions = {
-            "cosine":cosine,
-            "sine": sine,
-            "tangent": tangent,
-        }
-
-        volume = {"cube":cube_volume}
-
-        surface_area = {"cube", cube_surface_area}
 
         if calculate.lower() == "geometry":
-            shape = input("What shape would you like to calculate? (circle, square, triangle, rectangle, trapezoid, cube): ").lower()
-            g_calculation = input("What would you like to calculate? (Type 'area', 'perimeter', 'volume', 'surface area', 'cos', 'sin', or 'tan'): ").lower()
+            shape = input("What shape would you like to calculate? (circle, square, triangle, rectangle, trapezoid, cube, or trigonometry): ").lower()
+            g_calculation = input("What would you like to calculate? (area, perimeter, volume, surface area, cos, sin, or tan): ").lower()
 
             if shape == "circle":
-                radius = float(input("Enter the radius (make sure fractions are in decimal form): "))
-                if g_calculation == "area":
+                radius = float(input("What will be the radius of the circle: "))
+                if g_calculation.lower() == "area":
                     print(f"The area of the circle is: {circle_area(radius)}\n")
-                elif g_calculation == "perimeter":
+                elif g_calculation.lower() == "perimeter":
                     print(f"The circumference of the circle is: {circle_circumference(radius)}\n")
                 else:
-                    print("Unsupported circle calculation for this geometry menu.\n")
-
+                    print("Unsupported circle calculation.\n")
             elif shape == "square":
-                side = float(input("Enter the side length (make sure fractions are in decimal form): "))
-                if g_calculation == "area":
-                    print(f"The area of the square is: {square_area(side)}\n")
-                elif g_calculation == "perimeter":
-                    print(f"The perimeter of the square is: {square_perimeter(side)}\n")
+                side_length = float(input("What is your desired side-length for the square: "))
+                if g_calculation.lower() == "area":
+                    print(f"The area of the square is: {square_area(side_length)}\n")
+                elif g_calculation.lower() == "perimeter":
+                    print(f"The perimeter of the square is: {square_perimeter(side_length)}\n")
                 else:
-                    print("Unsupported square calculation for this geometry menu.\n")
-
+                    print("Unsupported square calculation.\n")
+            elif shape == "cube":
+                side_length = float(input("What is your desired side-length for the cube: "))
+                if g_calculation.lower() == "volume":
+                    print(f"The volume of the cube is: {cube_volume(side_length)}\n")
+                elif g_calculation.lower() == "surface area":
+                    print(f"The surface area of the cube is: {cube_surface_area(side_length)}\n")
+                else:
+                    print("Unsupported cube calculation.\n")
             elif shape == "triangle":
-                base = float(input("Enter the base length (make sure fractions are in decimal form): "))
-                height = float(input("Enter the height (make sure fractions are in decimal form): "))
-                if g_calculation == "area":
+                if g_calculation.lower() == "area":
+                    base = float(input("What is the base of your triangle: "))
+                    height = float(input("What is the height of your triangle: "))
                     print(f"The area of the triangle is: {triangle_area(base, height)}\n")
+                elif g_calculation.lower() == "perimeter":
+                    a = float(input("What is the value of a?: "))
+                    b = float(input("What is the value of b?: "))
+                    c = float(input("What is the value of c?: "))
+                    print(f"The perimeter of the triangle is: {triangle_perimeter(a, b, c)}\n")
                 else:
-                    print("Unsupported triangle calculation for this geometry menu.\n")
-
+                    print("Unsupported triangle calculation.\n")
             elif shape == "rectangle":
-                length = float(input("Enter the length (make sure fractions are in decimal form): "))
-                width = float(input("Enter the width (make sure fractions are in decimal form): "))
-                if g_calculation == "area":
+                length = float(input("What is the length of the rectangle: "))
+                width = float(input("What is the width of the rectangle: "))
+                if g_calculation.lower() == "area":
                     print(f"The area of the rectangle is: {rectangle_area(length, width)}\n")
-                elif g_calculation == "perimeter":
+                elif g_calculation.lower() == "perimeter":
                     print(f"The perimeter of the rectangle is: {rectangle_perimeter(length, width)}\n")
                 else:
-                    print("Unsupported rectangle calculation for this geometry menu.\n")
-
+                    print("Unsupported rectangle calculation.\n")
             elif shape == "trapezoid":
-                a = float(input("Enter the first base length (make sure fractions are in decimal form): "))
-                b = float(input("Enter the second base length (make sure fractions are in decimal form): "))
-                height = float(input("Enter the height (make sure fractions are in decimal form): "))
-                if g_calculation == "area":
+                a = float(input("What is the length of the first base: "))
+                b = float(input("What is the length of the second base: "))
+                height = float(input("What is the height of the trapezoid: "))
+                if g_calculation.lower() == "area":
                     print(f"The area of the trapezoid is: {trapezoid_area(a, b, height)}\n")
                 else:
-                    print("Unsupported trapezoid calculation for this geometry menu.\n")
-
-            elif shape == "cube":
-                side = float(input("Enter the side length (make sure fractions are in decimal form): "))
-                if g_calculation == "volume":
-                    print(f"The volume of the cube is: {cube_volume(side)}\n")
-                elif g_calculation == "surface area":
-                    print(f"The surface area of the cube is: {cube_surface_area(side)}\n")
+                    print("Unsupported trapezoid calculation.\n")
+            elif shape == "trigonometry":
+                angle = float(input("What is the angle of your triangle: "))
+                if g_calculation.lower() in ("cos", "cosine"):
+                    print(f"The cosine of {angle} degrees is: {cosine(angle)}\n")
+                elif g_calculation.lower() in ("sin", "sine"):
+                    print(f"The sine of {angle} degrees is: {sine(angle)}\n")
+                elif g_calculation.lower() in ("tan", "tangent"):
+                    print(f"The tangent of {angle} degrees is: {tangent(angle)}\n")
                 else:
-                    print("Unsupported cube calculation for this geometry menu.\n")
-
+                    print("Unsupported trigonometry calculation.\n")
             else:
                 print("Unsupported shape.\n")
 
