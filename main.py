@@ -8,6 +8,8 @@ try:
 except ModuleNotFoundError:
     sp = None
 
+    
+
 def addition(a,b):
     return a + b
 
@@ -232,6 +234,12 @@ def calculator():
                     print("Unsupported trigonometry calculation.\n")
             else:
                 print("Unsupported shape.\n")
+
+            #Skills I learned from this...
+            #1. organized code efficiently
+            #2. Learning how to use less code for more effective things
+            #3. Version 1 Done!
+            #4. Making index.html
 
             return calculator()
 
