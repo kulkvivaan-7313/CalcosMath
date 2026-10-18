@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CM-84</title>
+</head>
+
+<body>
+    <h1>CM-84 Calculator</h1>
+
+    <input type="number" id="number" placeholder="Enter a number">
+
+    <button onclick="calculate()">Square It!</button>
+
+    <p id="result"></p>
+
+    <script>
+        async function calculate() {
+            const number = document.getElementById("number").value;
+
+            const response = await fetch(`/api/square/${number}`);
+            const data = await response.json();
+
+            document.getElementById("result").textContent =
+                `Answer: ${data.result}`;
+        }
+    </script>
+</body>
+</html>
