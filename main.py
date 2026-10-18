@@ -19,6 +19,11 @@ def subtraction(a,b):
 def multiplication(a,b):
     return a * b
 
+
+def square(value):
+    return value * value
+
+
 def division(a,b):
     if b == 0:
         return "Error: Division by zero is undefined."
@@ -247,4 +252,5 @@ def calculator():
             print("Exiting the calculator. Goodybye!\n")
             return 
         
-calculator()
+if __name__ == "__main__":
+    calculator()
