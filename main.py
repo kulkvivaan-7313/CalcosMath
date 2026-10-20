@@ -29,6 +29,34 @@ def division(a,b):
         return "Error: Division by zero is undefined."
     return a/b
 
+def solve_algebra(how_calculate, how_product, equation):
+    if sp is None:
+        print("Algebra operations require the sympy package, which is not installed.\n")
+        return
+
+    
+    if how_calculate.lower() == "solve":
+        
+        # Here you would implement the logic to solve the equation(helped by Codex and sympy packages)
+        print(f"Solving the equation: {equation}\n")
+        # Placeholder for solving logic
+        #---------------------------------------------------------------------
+        x = sp.symbols('x')
+        sympy_parser = importlib.import_module("sympy.parsing.sympy_parser")
+        parse_expr = sympy_parser.parse_expr
+        standard_transformations = sympy_parser.standard_transformations
+        implicit_multiplication_application = sympy_parser.implicit_multiplication_application
+        transformations = standard_transformations + (implicit_multiplication_application,)
+        left, right = equation.split('=')
+        left_expr = parse_expr(left, transformations=transformations)
+        right_expr = parse_expr(right, transformations=transformations)
+        solution = sp.solve(left_expr - right_expr, x)
+        #---------------------------------------------------------------------
+        print(f"The solution is: {solution}\n")
+        if how_product.lower() == "graph" or how_product.lower() == "both":
+            sp.plot(left_expr - right_expr, (x, -10, 10), title='Graph of the equation:')
+            return calculator()
+
 
 def calculator():
     while True:
@@ -78,33 +106,12 @@ def calculator():
             return calculator()
 
         if calculate.lower() == "algebra":
-            if sp is None:
-                print("Algebra operations require the sympy package, which is not installed.\n")
-                continue
+            how_calculate = input("Solve, Simplify or Factor: ")
+            how_product = input("Text, Graph, or both?")
+            equation = input("Enter your equation(we only support x for now): ")
+            result = solve_algebra(how_calculate,how_product,equation)
+            print(result)
 
-            how_calculate = input("How would you like to calculate? (Type 'solve' to solve an equation, 'simplify' to simplify an expression or 'factor' to factor an expression): ")
-            how_product = input("How do you want your answer to be? ('graph' for a graph, 'text' for text, or 'both' for both): ")
-            if how_calculate.lower() == "solve":
-                equation = input("Enter the equation you want to solve (make sure to use 'x' as the variable(we don't support y, z, etc)): ")
-                # Here you would implement the logic to solve the equation(helped by Codex and sympy packages)
-                print(f"Solving the equation: {equation}\n")
-                # Placeholder for solving logic
-                #---------------------------------------------------------------------
-                x = sp.symbols('x')
-                sympy_parser = importlib.import_module("sympy.parsing.sympy_parser")
-                parse_expr = sympy_parser.parse_expr
-                standard_transformations = sympy_parser.standard_transformations
-                implicit_multiplication_application = sympy_parser.implicit_multiplication_application
-                transformations = standard_transformations + (implicit_multiplication_application,)
-                left, right = equation.split('=')
-                left_expr = parse_expr(left, transformations=transformations)
-                right_expr = parse_expr(right, transformations=transformations)
-                solution = sp.solve(left_expr - right_expr, x)
-                #---------------------------------------------------------------------
-                print(f"The solution is: {solution}\n")
-                if how_product.lower() == "graph" or how_product.lower() == "both":
-                    sp.plot(left_expr - right_expr, (x, -10, 10), title='Graph of the equation:')
-                    return calculator()
 
                 # CM-84 Phase I: Algebra Engine
                 # Developer Notes:

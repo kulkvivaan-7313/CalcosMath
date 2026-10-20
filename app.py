@@ -1,6 +1,7 @@
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from main import addition, subtraction, multiplication, division, square
+from main import solve_algebra
 
 app = Flask(__name__)
 
@@ -38,6 +39,18 @@ def arithmetic(operation, a, b):
         result = division(left, right)
     else:
         return jsonify({"error": "Unknown operation"}), 400
+
+    return jsonify({"result": result})
+
+@app.route("/api/algebra", methods=["POST"])
+def algebra_api():
+    data = request.get_json()
+
+    how_calculate = data["how_calculate"]
+    how_product = data["how_product"]
+    equation = data["equation"]
+
+    result = solve_algebra(how_calculate, how_product, equation)
 
     return jsonify({"result": result})
 
