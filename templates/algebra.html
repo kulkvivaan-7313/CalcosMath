@@ -25,11 +25,11 @@
     <h1>CM-84 Algebraic Calculator</h1>
 
     <input type="text" id="equation" placeholder="Enter your algebraic equation">
-    <div>
-        <button type="button">Solve for x</button>
-        <button type="button">Simplify</button>
-        <button type="button">Graph &amp; Text</button>
-        <button type="button">Evaluate</button>
+    <div> 
+        <button type="button" onclick="solveAlgebra('solve')">Solve for x</button>
+        <button type="button" onclick="solveAlgebra('simplify')">Simplify</button>
+        <button type="button" onclick="solveAlgebra('graph')">Graph</button>
+        
     </div>
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>
