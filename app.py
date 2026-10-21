@@ -11,6 +11,11 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/algebra.html")
+def algebra_page():
+    return render_template("algebra.html")
+
+
 @app.route("/api/square/<value>")
 def square_api(value):
     try:
