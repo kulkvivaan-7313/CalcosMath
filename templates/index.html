@@ -52,42 +52,7 @@
 
 <p id="arithmeticResult"></p>
 
-    <script>
-        async function calculate() {
-            const number = document.getElementById("number").value;
-
-            if (number === "") {
-                document.getElementById("result").textContent = "Please enter a number.";
-                return;
-            }
-
-            const response = await fetch(`/api/square/${encodeURIComponent(number)}`);
-            const data = await response.json();
-
-            document.getElementById("result").textContent =
-                data.error ?? `Answer: ${data.result}`;
-        }
-
-        async function calculateArithmetic() {
-            const a = document.getElementById("first").value;
-            const b = document.getElementById("second").value;
-            const operation = document.getElementById("operation").value;
-
-            if (a === "" || b === "") {
-                document.getElementById("arithmeticResult").textContent =
-                    "Please enter both numbers.";
-                return;
-            }
-
-            const response = await fetch(
-                `/api/arithmetic/${operation}/${encodeURIComponent(Number(a))}/${encodeURIComponent(Number(b))}`
-            );
-            const data = await response.json();
-
-            document.getElementById("arithmeticResult").textContent =
-                data.error ?? `Answer: ${data.result}`;
-        }
-    </script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>    
 </body>
 
 </html>
