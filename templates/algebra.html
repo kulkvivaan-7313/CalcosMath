@@ -26,13 +26,18 @@
 
     <input type="text" id="equation" placeholder="Enter your algebraic equation">
     <div> 
-        <button type="button" onclick="alert('BUTTON WORKS!')">
+        <button type="button" onclick="solveAlgebra('solve')">
     Solve for x
 </button>
         <button type="button" onclick="solveAlgebra('simplify')">Simplify</button>
         <button type="button" onclick="solveAlgebra('graph')">Graph</button>
         
     </div>
+    <p id="result"></p>
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
+
 
