@@ -47,6 +47,7 @@ def arithmetic(operation, a, b):
 
     return jsonify({"result": result})
 
+
 @app.route("/api/algebra", methods=["POST"])
 def algebra_api():
     data = request.get_json()
@@ -61,4 +62,5 @@ def algebra_api():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
+
