@@ -51,6 +51,8 @@ def solve_algebra(how_calculate, how_product, equation):
         left_expr = parse_expr(left, transformations=transformations)
         right_expr = parse_expr(right, transformations=transformations)
         solution = sp.solve(left_expr - right_expr, x)
+        if len(solution) == 0:
+            return "No solution found."
         return f"x = {solution[0]}"
         #---------------------------------------------------------------------
         
